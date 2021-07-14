@@ -10,9 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Fasesgrupo;
+use App\Models\apuesta;
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('/home');
+    $apuestas = apuesta::all();
+
+    $fasesgrupos = Fasesgrupo::all();
+    return view('home', ['fasesgrupos'=> $fasesgrupos, 'apuestas'=> $apuestas]);
 });
 
 Auth::routes();
@@ -25,3 +31,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('equipos', 'equiposController');
+
+
+Route::resource('fasesgrupos', 'FasesgrupoController');
+
+Route::resource('apuestas', 'apuestaController');
+
+
+Route::resource('acumulados', 'acumuladoController');

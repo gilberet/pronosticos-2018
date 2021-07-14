@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fasesgrupo;
+use App\Models\apuesta;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $fasesgrupos = Fasesgrupo::all();
+        $apuestas = apuesta::all();
+        return view('home', ['fasesgrupos'=> $fasesgrupos, 'apuestas'=> $apuestas]);
     }
 }

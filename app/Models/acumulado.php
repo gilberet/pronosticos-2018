@@ -6,29 +6,26 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class equipos
+ * Class acumulado
  * @package App\Models
- * @version June 14, 2018, 4:52 pm UTC
+ * @version June 18, 2018, 1:19 am UTC
  *
- * @property string nombre
- * @property string imagen
+ * @property decimal monto
+ * @property string fecha
  */
-class equipos extends Model
+class acumulado extends Model
 {
     use SoftDeletes;
 
-    public $table = 'equipos';
+    public $table = 'acumulados';
 
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nombre',
-        'imagen',
-        'codigo',
-        'grupo_id',
-        'grupo_letra',
+        'monto',
+        'fecha'
     ];
 
     /**
@@ -37,8 +34,7 @@ class equipos extends Model
      * @var array
      */
     protected $casts = [
-        'nombre' => 'string',
-        'imagen' => 'string'
+        'fecha' => 'string'
     ];
 
     /**
@@ -47,12 +43,9 @@ class equipos extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required'
+        'monto' => 'required',
+        'fecha' => 'required'
     ];
 
-    public function fasesgrupos()
-    {
-        return $this->hasMany('App\Models\Fasesgrupo');
-    }
 
 }
